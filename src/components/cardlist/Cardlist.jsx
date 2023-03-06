@@ -5,20 +5,23 @@ import AddButton from '../../button/AddButton'
 export default function Cardlist(props) {
 
   const notes = props.notes
-  console.log(notes);
+  
   function handleNewCard(title,description){
     if(title || description) {props.handleNew(title,description)}
+  }
+
+  function handlePinChange(IsPined,index){
+
+    props.handlePin(IsPined,index)
   }
   
   return (
     <ul className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-      {notes.map((note) => {
-        return (
-          <Fragment key={note.id}>
-            <Card note={note} />
+      {notes.map(note => (
+          <Fragment key={note.counter}>
+            <Card note={note} handlePin={handlePinChange}/>
           </Fragment>
-        );
-      })}
+      ))}
       <AddButton handleNew={handleNewCard}/>
     </ul>
   );

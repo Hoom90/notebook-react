@@ -1,24 +1,33 @@
 import Header from "./components/Header";
 import Cardlist from "./components/cardlist/Cardlist";
-import { useState } from "react";
-// import axios from "axios";
+import { useEffect,useState } from "react";
 
-function App() {
+export default function App() {
   const [notes, setNotes] = useState([])
-  let counter=''
 
   function handleCreateNewCard(title,description){
-    counter = Date.now()
-    setNotes({counter,title,description})
-    // notes.push({counter,title,description})
+    let counter = Date.now()
+    let pined = false
+    setNotes([...notes,{counter,title,description,pined}])
   }
+
+  function handlePinChange(IsPined,index){
+    for(let i =0;i<notes.length;i++){
+      if(notes[i].counter === index){
+        notes[i].pined = IsPined
+      }
+    }
+    setNotes(notes)
+  }
+
+  useEffect(() => {
+    console.log("hello")
+  }, [notes])
+  
   return (
     <div className="container mx-auto">
       <Header className=""/>
-      <Cardlist notes={notes} handleNew={handleCreateNewCard}/>
+      <Cardlist notes={notes} handleNew={handleCreateNewCard} handlePin={handlePinChange}/>
     </div>
-
   );
 }
-
-export default App;
