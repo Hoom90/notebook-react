@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import Card from '../card/Card'
-import AddButton from '../../button/AddButton'
+import AddButton from '../button/AddButton'
 
 export default function Cardlist(props) {
 
@@ -14,8 +14,11 @@ export default function Cardlist(props) {
     props.handleDelete(index)
   }
 
-  function handlePinChange(IsPined,index){
+  function handleColorChange(color,index){
+    props.handleColor(color,index)
+  }
 
+  function handlePinChange(IsPined,index){
     props.handlePin(IsPined,index)
   }
   
@@ -23,7 +26,7 @@ export default function Cardlist(props) {
     <ul className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
       {notes.map(note => (
           <Fragment key={note.id}>
-            <Card note={note} handlePin={handlePinChange} handleDelete={handleDeleteCard}/>
+            <Card note={note} handlePin={handlePinChange} handleDelete={handleDeleteCard} handleColor={handleColorChange}/>
           </Fragment>
       ))}
       <AddButton handleNew={handleNewCard}/>

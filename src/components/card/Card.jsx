@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect,useRef } from "react";
+import { useRef } from "react";
 
 export default function Card(props) {
 
@@ -13,7 +13,7 @@ export default function Card(props) {
   }
 
   const handleColorChange = (e) =>{
-    console.log(e.target.value);
+    props.handleColor(e.target.className.split(" ")[0],note.id)
   }
 
   const handlePinChange = (e) => {
@@ -23,10 +23,10 @@ export default function Card(props) {
   }
   return (
     <li className="p-1 ">
-      <div className="bg-red-300 p-3 border-black border-t-8 break-all">
+      <div className= {`${note.color} p-1 break-all`}>
         <span className="flex justify-between gap-3">
           <textarea
-            className="overflow-hidden w-full bg-transparent resize-none focus:outline-none h-7"
+            className="overflow-hidden w-full bg-transparent resize-none focus:outline-none h-7 text-lg font-bold"
             maxLength={38}
           >
             {note.title}
@@ -70,7 +70,7 @@ export default function Card(props) {
             }}
             className="cursor-pointer"
           >
-            <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none">
+            <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none">
               <path
                 d="M19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12C18 12.5523 18.4477 13 19 13Z"
                 stroke="#000000"
@@ -100,9 +100,9 @@ export default function Card(props) {
                 menu.current.style.display = "none";
                 menubutton.current.style.display = "block";
               }}
-              className="cursor-pointer"
+              className="cursor-pointer h-6"
             >
-              <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none">
+              <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
@@ -111,16 +111,16 @@ export default function Card(props) {
                 />
               </svg>
             </li>
-            <li className="flex gap-1" onClick={handleColorChange}>
-              <div className="bg-blue-500 w-5 h-5 border cursor-pointer" name="palette" value="bg-blue-500"></div>
-              <div className="bg-red-500 w-5 h-5 border cursor-pointer" name="palette" value="bg-red-500"></div>
-              <div className="bg-green-500 w-5 h-5 border cursor-pointer" name="palette" value="bg-green-500"></div>
-              <div className="bg-purple-500 w-5 h-5 border cursor-pointer" name="palette" value="bg-purple-500"></div>
+            <li className="flex gap-1 mt-1" onClick={handleColorChange}>
+              <div className="bg-blue-500 w-5 h-5 border cursor-pointer"></div>
+              <div className="bg-red-500 w-5 h-5 border cursor-pointer"></div>
+              <div className="bg-green-500 w-5 h-5 border cursor-pointer"></div>
+              <div className="bg-purple-500 w-5 h-5 border cursor-pointer"></div>
             </li>
           </ul>
           <span onClick={handleDeleteCard}>
             <svg
-              className="mt-1 cursor-pointer"
+              className=" cursor-pointer"
               width="25px"
               height="25px"
               viewBox="0 0 24 24"

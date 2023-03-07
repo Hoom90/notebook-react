@@ -14,20 +14,21 @@ export default function AddButton(props) {
 
   return (
     <li className="p-1">
-      <form className="bg-yellow-300 p-3" onSubmit={handleNewItem}>
+      <form className="bg-gray-300 p-1 break-all m-0" onSubmit={handleNewItem} >
         <textarea
-          className="overflow-hidden w-full bg-transparent placeholder-gray-500 resize-none focus:outline-none h-7"
+          className="overflow-hidden w-full bg-transparent placeholder-gray-500 resize-none focus:outline-none h-7 text-lg font-bold"
           maxLength={38}
           name="title"
           placeholder="new title"
         />
         <hr />
         <textarea
-          className="overflow-hidden w-full bg-transparent placeholder-gray-500 resize-none focus:outline-none h-32 mt-1"
+          className=" placeholder-gray-500 h-32 overflow-hidden w-full bg-transparent resize-none focus:outline-none"
           maxLength={185}
           name="description"
           placeholder="new text"
         />
+        <hr />
         <input className="cursor-pointer" type="submit" value="save" />
       </form>
     </li>
