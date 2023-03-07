@@ -6,14 +6,22 @@ export default function App() {
   const [notes, setNotes] = useState([])
 
   function handleCreateNewCard(title,description){
-    let counter = Date.now()
+    let id = Date.now()
     let pined = false
-    setNotes([...notes,{counter,title,description,pined}])
+    setNotes([...notes,{id,title,description,pined}])
+  }
+
+  function handleDeleteCard(index){
+    for(let i=0;i<notes.length;i++){
+      if(notes[i].id == index){
+        setNotes(current => current.filter(items => items.id !== index))
+      }
+    }
   }
 
   function handlePinChange(IsPined,index){
     for(let i =0;i<notes.length;i++){
-      if(notes[i].counter === index){
+      if(notes[i].id === index){
         notes[i].pined = IsPined
       }
     }
@@ -21,13 +29,13 @@ export default function App() {
   }
 
   useEffect(() => {
-    console.log("hello")
+    
   }, [notes])
   
   return (
     <div className="container mx-auto">
-      <Header className=""/>
-      <Cardlist notes={notes} handleNew={handleCreateNewCard} handlePin={handlePinChange}/>
+      <Header/>
+      <Cardlist notes={notes} handleNew={handleCreateNewCard} handlePin={handlePinChange} handleDelete={handleDeleteCard}/>
     </div>
   );
 }

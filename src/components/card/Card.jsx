@@ -8,14 +8,18 @@ export default function Card(props) {
   const menu = useRef();
   const menubutton = useRef();
 
-  const handleDelete = (e) => {
-    
+  const handleDeleteCard = (e) => {
+    props.handleDelete(note.id)
+  }
+
+  const handleColorChange = (e) =>{
+    console.log(e.target.value);
   }
 
   const handlePinChange = (e) => {
     if(note.pined){note.pined = false}
     else{note.pined = true}
-    props.handlePin(note.pined,note.counter)
+    props.handlePin(note.pined,note.id)
   }
   return (
     <li className="p-1 ">
@@ -107,18 +111,20 @@ export default function Card(props) {
                 />
               </svg>
             </li>
-            <li>
-              <input type="color" className="h-6 w-5 border-none bg-transparent cursor-pointer mt-0.5"/>
+            <li className="flex gap-1" onClick={handleColorChange}>
+              <div className="bg-blue-500 w-5 h-5 border cursor-pointer" name="palette" value="bg-blue-500"></div>
+              <div className="bg-red-500 w-5 h-5 border cursor-pointer" name="palette" value="bg-red-500"></div>
+              <div className="bg-green-500 w-5 h-5 border cursor-pointer" name="palette" value="bg-green-500"></div>
+              <div className="bg-purple-500 w-5 h-5 border cursor-pointer" name="palette" value="bg-purple-500"></div>
             </li>
           </ul>
-          <span>
+          <span onClick={handleDeleteCard}>
             <svg
               className="mt-1 cursor-pointer"
               width="25px"
               height="25px"
               viewBox="0 0 24 24"
               fill="none"
-              onClick={handleDelete}
             >
               <path
                 fillRule="evenodd"

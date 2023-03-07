@@ -10,6 +10,10 @@ export default function Cardlist(props) {
     if(title || description) {props.handleNew(title,description)}
   }
 
+  function handleDeleteCard(index){
+    props.handleDelete(index)
+  }
+
   function handlePinChange(IsPined,index){
 
     props.handlePin(IsPined,index)
@@ -18,8 +22,8 @@ export default function Cardlist(props) {
   return (
     <ul className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
       {notes.map(note => (
-          <Fragment key={note.counter}>
-            <Card note={note} handlePin={handlePinChange}/>
+          <Fragment key={note.id}>
+            <Card note={note} handlePin={handlePinChange} handleDelete={handleDeleteCard}/>
           </Fragment>
       ))}
       <AddButton handleNew={handleNewCard}/>
